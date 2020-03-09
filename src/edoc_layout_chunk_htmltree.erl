@@ -64,7 +64,7 @@ format_content_(#xmlElement{} = E, Ctx) ->
 	    [{Name, format_content_(Attributes, Ctx), format_content_(Content, Ctx)}]
     end;
 format_content_([H|T], Ctx) ->
-    [format_content_(H, Ctx) | format_content_(T, Ctx)];
+    lists:flatten([format_content_(H, Ctx) | format_content_(T, Ctx)]);
 format_content_([], _Ctx) ->
     [].
 
