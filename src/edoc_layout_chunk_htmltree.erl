@@ -27,7 +27,9 @@ format_xmerl(XMLContents, Options) ->
 
 -spec format_content(edoc_chunks:xml_element_contents(), map()) -> htmltree().
 format_content(Contents, Ctx) ->
-    shell_docs:normalize(format_content_(Contents, Ctx)).
+    Tree = format_content_(Contents, Ctx),
+    _ = shell_docs:validate(Tree),
+    shell_docs:normalize(Tree).
 
 -spec format_content_(edoc_chunks:xml_element_content(), map()) -> htmltree().
 format_content_(#xmlPI{}, _Ctx)      -> [];
